@@ -1,0 +1,73 @@
+
+	<div class="container">
+		<div class="header row justify-content-center">
+			<div class="col-7 p-l-0">
+				<p>Bé tập tính</p>
+			</div>
+		</div>
+        <form action="/" method="POST" onsubmit="return(calculate());">
+            <div class="wrapper row justify-content-center">
+                <div class="wrap-input col-sm-5">
+                    <div class="row form-group">
+                        <label for="first-number" class="col-3 col-form-label">Số thứ nhất</label>
+                        <div class="col align-content-center">
+                            <input type="text" class="form-control" id="first-number" name="sothunhat" 
+                                placeholder="nhập số thứ nhất" onfocusout="checkFocusOut(this)" value="{{firstNum}}">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="second-number" class="col-3 col-form-label">Số thứ hai</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="second-number" name="sothuhai" 
+                                placeholder="nhập số thứ hai" onfocusout="checkFocusOut(this)" value="{{secondNum}}">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="result-number" class="col-3 col-form-label">Kết quả</label>
+                        <div class="col">
+                            <input type="text" class="form-control" id="result-number" disabled value="{{result}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrap-operator col-sm-2">
+                    <div class="row form-group">
+                        <div class="form-check col-5">
+                            <input class="form-check-input" type="radio" name="operator" id="plus" value="plus" {{#if isPlus}}checked{{/if}}>
+                            <label class="form-check-label" for="plus">Cộng</label>
+                        </div>
+                        <div class="form-check col">
+                            <input class="form-check-input" type="radio" name="operator" id="minus" value="minus" {{#if isMinus}}checked{{/if}}>
+                            <label class="form-check-label" for="minus">Trừ</label>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="form-check col-5">
+                            <input class="form-check-input" type="radio" name="operator" id="multi" value="multi" {{#if isMulti}}checked{{/if}}>
+                            <label class="form-check-label" for="multi">Nhân</label>
+                        </div>
+                        <div class="form-check col">
+                            <input class="form-check-input" type="radio" name="operator" id="devide" value="devide" {{#if isDevide}}checked{{/if}}>
+                            <label class="form-check-label" for="devide">Chia</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-primary" id="calculator">Tính</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+		<div class="row notify justify-content-center">
+			<div class="col-md-7">
+				<div class="row">
+					<div class="col-form-label c-scal">
+						<label>Thông báo</label>
+					</div>
+					<div class="col content">
+						<label id="content-error"></label> 
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
