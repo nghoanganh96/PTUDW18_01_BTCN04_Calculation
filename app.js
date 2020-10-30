@@ -24,8 +24,10 @@ app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 
-app.use('/', calculationController);
-
+//app.use('/', calculationController);
+app.get('/', (req, res) => {
+    res.send('Hello Nguyen Hoang Anh');
+});
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
