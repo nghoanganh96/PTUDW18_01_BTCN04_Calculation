@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars');
 const calculationController = require('./controllers/calculation');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 // ""
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());     // parse POST via request.body
@@ -18,13 +18,16 @@ app.use(bodyParser.urlencoded({ // parse string url /profile?id=5
 // app.use(express.urlencoded());
 const hbs = exphbs.create({
     extname: 'hbs'
-})
+});
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 
 
-app.use('/', calculationController);
+//app.use('/', calculationController);
+app.get('/', (req, res) => {
+    res.send('Hello Nguyen Hoang Anh');
+});
 
 
 app.listen(port, () => {
