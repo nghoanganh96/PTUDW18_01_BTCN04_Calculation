@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     res.render('calculation');
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
     let firstNum = parseFloat(req.body.sothunhat);
     let secondNum = parseFloat(req.body.sothuhai);
     let operator = req.body.operator;

@@ -1,29 +1,36 @@
 const express = require("express");
 const path = require('path');
-const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const calculationController = require('./controllers/calculation');
+const logger = require('morgan');
 
 const app = express();
 const port = process.env.PORT || 3000;
 // ""
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.json());     // parse POST via request.body
-app.use(bodyParser.urlencoded({ // parse string url /profile?id=5
+
+// logger
+app.use(logger('dev'));
+
+//  Since v4.16.0
+app.use(express.json());
+app.use(express.urlencoded({
     extended: false
 }));
 
-//  Since v4.16.0
-// app.use(express.json());
-// app.use(express.urlencoded());
+// handlebars modules
 const hbs = exphbs.create({
-    extname: 'hbs'
+    extname: 'hbs',
+    defaultLayout: 'main',
+    helpers: {
+
+    }
 });
+app.engine('hbs', hbs.engine); // create Engine named hbs
+app.set('view engine', 'hbs'); // set view engine of express is that engine above.
+// app.set('views', path.join(__dirname, 'views'))
 
-app.engine('hbs', hbs.engine);
-app.set('view engine', 'hbs');
-
-
+// routers
 app.use('/', calculationController);
 
 app.listen(port, () => {
